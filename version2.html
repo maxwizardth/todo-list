@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>TO DO LIST</title>
+  <link rel="icon" type="image/x-icon" href="Add List_25px.png">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300&display=swap" rel="stylesheet">
+  <style type="text/css">
+
+
+   html{scroll-behavior: smooth;
+  
+}
+*{box-sizing: border-box;}
+body{background-color: #ffccff;
+ font-family: 'Hind Siliguri', sans-serif;
+  margin: 0;
+}
+
+.content {
+  margin: auto;
+  max-width: 70%;
+}
+.content h1{font-size: 5vw;
+}
+
+
+/*Style the header*/
+.header{ background-color: #330033;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+.header h1{text-shadow: 0px 0px 10px white;
+}
+.content button{float: left;
+  padding: 10px;
+    width: 25%;
+  background: #d9d9d9;
+  color: black;
+  cursor: pointer;
+  transition: 0.3s;
+  border: none;
+  border-radius:3px;
+  font-size: 12px;
+  margin: 10px;
+}
+.content button:hover{font-weight: bold;
+  background-color: #bbb;
+}
+
+
+
+/* Clear floats after the header */
+.header:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.content #search input{width: 100%;
+  float: right;
+
+
+}
+.content input {
+  margin: 0;
+  border: none;
+  width: 75%;
+  padding: 10px;
+  float: left;
+  font-size: 14px;
+  border-radius: 3px 0px 0px 3px;
+  color: black;
+}
+
+.content input:focus{outline: none;
+  box-shadow: 0px 0px 10px white;
+}
+.Search input[type=text]{width: 45%;
+  float: right;
+  background-image: url('Search_15px.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  padding-left: 30px;
+  padding-bottom: 10px;
+  font-size: 12px;
+
+}
+
+.Addbtn{ padding: 6px;
+  font-weight: bold;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0px 3px 3px 0px;
+}
+
+.Addbtn:hover{background-color: #bbb;
+  box-shadow: 0px 0px 5px black;
+}
+
+ul li{position: relative;
+  list-style-type: circle;
+  list-style-position: outside;
+  padding: 12px 8px 12px 40px;
+  cursor: pointer;
+  background: #eee;
+  background:  #ecf9ec;
+  font-size: 14px;
+  word-wrap: break-word;
+}
+
+ul li:hover{background-color:   #66b8ff;
+transition: .5s;}
+ul{margin: 0;
+  padding: 0;
+}
+/* Add a  mark when selected on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+  border-radius: 0px 0px 5px 0px;
+}
+
+ul li.checked {
+  background:   #660066;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+
+.close:hover {
+  background-color: #330033;
+  color:  white;
+  transition: 1s;
+}
+
+
+
+
+/* Button used to open the contact form - fixed at the bottom of the page */
+.open-button {
+  position: relative;
+  background: #330033;
+  color: white;
+  border: none;
+  padding: 15px 10px 15px 10px;
+  margin: 20px;
+   display: block;
+   cursor: pointer;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 9;
+  border-radius: 10px;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 250px;
+  padding: 10px;
+  background:  #660066;
+  color: white;
+  border-radius: 10px;
+   border: 3px solid #f1f1f1;
+}
+
+/* Full-width input fields */
+.form-container input[type=text], .form-container input[type=email], .form-container textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 3px 0 11px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=text]:focus, .form-container input[type=password], .form-container input[type=email], .form-container textarea:focus {
+ 
+  outline: none;
+
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: white;
+  color: #003666;
+  padding: 8px 10px;
+  border: none;
+  cursor: pointer;
+  width: 45%;
+  margin: auto;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+  color: white;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 650px) {
+
+  li{padding: 9px 5px 9px 20px;
+  }
+
+  .content{max-width: 95%;
+  }
+
+  .close{ padding: 12px 8px 12px 16px;
+  }
+
+  ul li.checked::before {position: absolute;
+    left: 7px;}
+
+    ul li{padding: 12px 8px 12px 25px;
+       font-size: 12px;
+    }
+     .form-container{position: relative;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .form-popup{position: relative;
+    display: block;
+    left: 0px;
+  }
+}
+
+ footer{padding: 12px;
+      font-size: 22px;
+    }
+    #copy{font-size: 15px}
+footer h6{margin: 1px}
+.social a{margin: 1px}
+.fa-twitter-square{color:#660066;margin-left: 15px }
+</style>
+
+</head>
+<body>
+  
+  <div class="content">
+<div class="header">
+<h1>MY  TO-DO  LIST </h1>
+<span style="float: left; font-size: 2vmin; padding: 5px;">
+<i class="fa fa-hand-o-right "></i> Toggle accomplished task(s) to highlight it. <br> <br>
+<i class="fa fa-hand-o-right "></i> Use the ✖ button to remove a task. &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+</span>
+
+<div class="Search">
+<input type="text" name="Search task" placeholder="Search item..." id="filter">
+</div>
+</div>
+
+
+<ul id="listElements">
+
+</ul>
+
+<div class="header">
+  <button onclick="sortList()" title="Sort the list alphabetically">Sort List</button>
+
+
+<input type="text" name="input" placeholder="Input task..." id="MyInput">
+<div class="Addbtn" onclick="renderApp()" title="Add new item to the list">Add</div>
+
+</div>
+</div>
+<button class="open-button" onclick="openForm()">DROP A REVIEW</button>
+
+
+<div class="form-popup" id="myForm">
+  <form action="https://formsubmit.co/abdullahioladejo1@gmail.com" method="POST" class="form-container">
+    
+    
+    <label for="name"><b>Name</b></label>
+    <input type="text" placeholder="Enter name, firstname first" name="name" required>
+
+    <label for="email"><b>Email</b></label>
+    <input type="email" placeholder="Enter Email" name="email" required>
+
+
+    <label for="textarea"><b>Comment </b></label>
+    <textarea rows="4">
+</textarea>
+
+     <input type="hidden" name="_next" value="https://maxwizardth.github.io/todo-list/">
+   
+     <input type="hidden" name="_captcha" value="false">
+     <button type="submit" class="btn" onclick="mySubmit()">Submit</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+
+</div>
+<div><span>Share:</span> <a class="btn-floating btn btn-tw" type="button" role="button" title="Share on facebook"
+   href="https://www.facebook.com/sharer/sharer.php?u=https://" target="_blank"
+   rel="noopener">
+  <i class="fa fa-2x fa-facebook-square"></i>
+</a>
+    <a class="btn-floating btn btn-tw" type="button" role="button" title="Share on twitter"
+   href="https://twitter.com/intent/tweet?url=https://"
+   rel="noopener">
+  <i class="fa fa-2x fa-twitter-square"></i>
+</a></div>
+<footer class="footer ">
+     <h2>Connect with Us<hr></h2>
+     <p class="social link">
+      <a href="https://web.facebook.com/abdullahi.oladejo.10"><i class="fa fa-facebook-square logo" aria-hidden="true"></i></a>
+      <a href=""><i class="fa fa-whatsapp logo" aria-hidden="true"></i></a>
+      <a href="https://twitter.com/oladejoabdulla7"><i class="fa fa-twitter logo" aria-hidden="true"></i></a>
+       <a href="https://www.instagram.com/maxwizardth/"><i class="fa fa-instagram logo" aria-hidden="true"></i></a>
+      <a href=""><i class="fa fa-linkedin-square logo" aria-hidden="true"></i></a>
+       <a href="https://github.com/maxwizardth"><i class="fa fa-github logo" aria-hidden="true"></i></a>
+        <h6>Call Hours: 9am-9pm (Mon-Fri)</h6>
+        <h6><a href=""><i class="fa fa-phone logo" aria-hidden="true"></i></a>+2349153036869</h6>
+        <h6><a href=""><i class="fa fa-envelope logo" aria-hidden="true"></i>
+        </a>abdullahioladejo1@gmail.com</h6>
+      </p>
+     <div class="text-center cpy-right">
+    <span id="copy"><small>Copyright© youngscientist|Designed by Maxwizard</small></span>
+  </div>
+</footer> 
+
+
+<script>
+
+  //Function to filteritems
+var filter = document.getElementById("filter");
+filter.addEventListener('keyup', filterItems);
+
+function filterItems() {
+var text = document.getElementById("filter").value.toLowerCase();
+var list = document.getElementsByTagName("li");
+
+//Convert the LI content into an array
+Array.from(list).forEach(function(list){
+  var listName = list.firstChild.textContent;
+
+  //Compare the search box value with the LI contents
+  if(listName.toLowerCase().indexOf(text) != -1){
+    list.style.display = 'block';
+
+  }
+  else{
+    list.style.display = 'none'
+  }
+})
+
+}
+
+
+let allItems=[]
+function sortList() {
+  var list, i, switching, b, shouldSwitch;
+  list = document.getElementById("listElements");
+  switching = true;
+  /* Make a loop that will continue until
+  no swizxtching has been done: */
+  while (switching) {
+    // start by saying: no switching is done:
+    switching = false;
+    b = list.getElementsByTagName("LI");
+    // Loop through all list-items:
+    for (i = 0; i < (b.length - 1); i++) {
+      // start by saying there should be no switching:
+      shouldSwitch = false;
+      /* check if the next item should
+      switch place with the current item: */
+      if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+        /* if next item is alphabetically
+        lower than current item, mark as a switch
+        and break the loop: */
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark the switch as done: */
+      b[i].parentNode.insertBefore(b[i + 1], b[i]);
+      switching = true;
+    }
+  }
+}
+
+
+function checkedList(){
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', 
+  function(event) {
+  if (event.target.tagName === 'LI') 
+  {
+    keyValue=event.target.dataset.key;
+    let index = allItems.findIndex(item => item.id === Number(keyValue));
+     event.target.classList.toggle('checked');
+     /*changing the class checked */
+  allItems[index].checked = !allItems[index].checked;
+    /*updating the dataset attribute checked to switching*/
+    localStorage.setItem('ItemReference', JSON.stringify(allItems));
+  }
+    });
+}
+
+
+ //Append the input content into the list item
+function renderApp() {
+  var input = document.getElementById("MyInput").value;
+  item={text:input.trim(),id:Date.now(),checked:false}
+  allItems.push(item)
+  appendData(item)
+  localStorage.setItem('ItemReference', JSON.stringify(allItems));
+}
+
+
+function appendData(item) {
+ let input=item.text;
+ var li = document.createElement("li");
+ li.setAttribute('data-key',item.id);
+ var textnode = document.createTextNode(input);
+ li.appendChild(textnode);
+  if (input === '') {alert("You must write something!");}
+  else {document.getElementById("listElements").appendChild(li)}
+
+  document.getElementById("MyInput").value='';
+  addCancel()
+  }
+
+ 
+ function addCancel(argument) {
+  var allItemsElement = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < allItemsElement.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("✖");
+  span.className = "close";
+  span.onclick = function() {
+  keyValue=this.parentElement.dataset.key
+  this.parentElement.remove();
+  allItems=allItems.filter(function(item){
+    return item.id !=Number(keyValue);
+     
+  })
+  
+  localStorage.setItem('ItemReference', JSON.stringify(allItems))
+}
+  span.appendChild(txt);
+  keyValue=allItemsElement[i].getAttribute('data-key');
+  
+    let index = allItems.findIndex(item => item.id === Number(keyValue));
+ 
+if(allItems[index].checked==true){
+  allItemsElement[i].classList.add('checked')}
+  allItemsElement[i].appendChild(span);}
+  checkedList()
+}
+
+
+/*getting the previous data when the page reload*/
+document.addEventListener('DOMContentLoaded', () => {
+  const ref = localStorage.getItem('ItemReference');
+  if (ref) {
+    todoItems = JSON.parse(ref);
+    allItems=todoItems.filter(function(item){
+      return item.text!=''});
+    allItems.forEach(t => {appendData(t);})
+     }});
+
+
+//Function for review box
+function openForm() {
+  document.getElementById("myForm").style.display = "block";
+}
+ 
+  
+function closeForm() {
+  document.getElementById("myForm").style.display = "none";
+}
+window.onload=document.getElementById("myForm").style.display = "none";
+
+
+</script>
+</body>
+</html>
